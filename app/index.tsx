@@ -1,15 +1,15 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import { Button, ButtonText } from '@/components/ui/button'
 
-export default function Index() {
+const Homepage = () => {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View>
+      <Button variant='outline'><ButtonText>Button</ButtonText></Button>
     </View>
-  );
+  )
 }
+
+export default Homepage
+
+const styles = StyleSheet.create({})
