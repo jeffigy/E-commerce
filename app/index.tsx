@@ -1,21 +1,26 @@
-import { FlatList, StyleSheet, View } from 'react-native'
-import React from 'react'
-import { Button, ButtonSpinner, ButtonText } from '@/components/ui/button'
-import products from '@/assets/products.json'
-import ProductListItem from '@/components/ProductListItem'
+import { FlatList } from "react-native";
+import React from "react";
+import products from "@/assets/products.json";
+import ProductListItem from "@/components/ProductListItem";
+import { useBreakpointValue } from "@/components/ui/utils/use-break-point-value";
 
 const Homepage = () => {
-  return (
-    <View>
-      <FlatList contentContainerClassName='gap-2' numColumns={2} data={products} columnWrapperClassName='gap-2' renderItem={({item}) => (
-        <ProductListItem product={item}/>
-      )}/>
-      <Button>
-        <ButtonSpinner />
-        <ButtonText>Button</ButtonText>
-      </Button>
-    </View>
-  )
-}
+  const numColumns = useBreakpointValue({
+    default: 2,
+    sm: 3,
+    xl: 4,
+  }) as number
 
-export default Homepage
+  return (
+    <FlatList
+      key={numColumns}
+      data={products.splice(0, 10)}
+      numColumns={numColumns}
+      contentContainerClassName="gap-2 max-w-[960px] mx-auto w-full"
+      columnWrapperClassName="gap-2"
+      renderItem={({ item }) => <ProductListItem product={item} />}
+    />
+  );
+};
+
+export default Homepage;

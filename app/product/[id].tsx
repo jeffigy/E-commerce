@@ -15,6 +15,7 @@ const ProductDetails = () => {
   const {id} = useLocalSearchParams<{id: string}>()
 
   const product = products.find((product: Product) => product.id === Number(id))
+  console.log(product)
 
   const addToCart = () => {
     console.log('Add to cart')
