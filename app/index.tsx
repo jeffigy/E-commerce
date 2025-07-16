@@ -1,9 +1,8 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, View } from 'react-native'
 import React from 'react'
 import { Button, ButtonSpinner, ButtonText } from '@/components/ui/button'
 import products from '@/assets/products.json'
 import ProductListItem from '@/components/ProductListItem'
-import EvilIcons from '@expo/vector-icons/EvilIcons';
 
 const Homepage = () => {
   return (
@@ -20,5 +19,3 @@ const Homepage = () => {
 }
 
 export default Homepage
-
-const styles = StyleSheet.create({})
