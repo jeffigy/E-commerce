@@ -10,21 +10,26 @@ import { Heading } from '@/components/ui/heading'
 import { Text } from '@/components/ui/text'
 import { Button, ButtonText } from '@/components/ui/button'
 import { VStack } from '@/components/ui/vstack'
+import { useProductByIdQuery } from '@/hooks/useProducts'
+import { ActivityIndicator } from 'react-native'
 
 const ProductDetails = () => {
   const {id} = useLocalSearchParams<{id: string}>()
-
-  const product = products.find((product: Product) => product.id === Number(id))
-  console.log(product)
+  const {data: product, isLoading, isError, error, isFetching} = useProductByIdQuery(Number(id))
 
   const addToCart = () => {
     console.log('Add to cart')
   }
 
-  if(!product) return <Text>Product not found</Text>
+  if(isLoading) return <ActivityIndicator />
+
+  if(isError) return <Text>Error: {error.message}</Text>
+
+
 
   return (
     <Box className="flex-1 items-center p-3">
+      {isFetching && <ActivityIndicator />}
       <Stack.Screen options={{ title: product.name }} />
 
       <Card className="p-5 rounded-lg max-w-[960px] w-full flex-1">
